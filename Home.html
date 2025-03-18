@@ -5,84 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Do Docking</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         body {
             font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: white;
         }
         
         .glow-text {
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
         
-        .custom-file-upload:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .protein-background {
+            opacity: 0.15;
+            filter: blur(1px);
+            animation: pulse 5s infinite alternate;
         }
         
-        .radio-container input[type="radio"] {
-            appearance: none;
-            width: 1.2rem;
-            height: 1.2rem;
-            border: 2px solid #4F46E5;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            position: relative;
+        @keyframes pulse {
+            0% {
+                opacity: 0.1;
+            }
+            100% {
+                opacity: 0.2;
+            }
         }
         
-        .radio-container input[type="radio"]:checked::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0.6rem;
-            height: 0.6rem;
-            background-color: #4F46E5;
-            border-radius: 50%;
-        }
-        
-        .gradient-border {
-            border: 1px solid transparent;
-            background: linear-gradient(black, black) padding-box,
-                         linear-gradient(90deg, #4F46E5, #10B981) border-box;
-            border-radius: 1rem;
-        }
-        
-        .file-item {
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
         
-        .file-item:hover {
-            transform: translateX(5px);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .action-button {
+            background: linear-gradient(135deg, #4F46E5, #10B981);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+            background: linear-gradient(135deg, #4338CA, #059669);
+        }
+        
+        .footer-logo {
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .main-title {
+            background: linear-gradient(90deg, #4F46E5, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(16, 185, 129, 0.7);
+            }
         }
     </style>
 </head>
-<body class="relative bg-black h-screen w-screen flex flex-col items-center justify-center">
-    <div class="absolute inset-0 bg-cover bg-center border-8 border-black" style="background-image: url('protein1.png'); background-size: 80%; background-repeat: no-repeat; background-position: center;"></div>
-    
-    <div class="relative z-10 text-center text-white mt-[-200px]">
-        <h1 class="text-5xl font-bold">Do Docking</h1>
-        <p class="text-lg mt-2">Por Natalie Marques</p>
+<body class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+    <!-- Imagem de fundo da proteína -->
+    <div class="protein-background absolute inset-0 z-0">
+        <img src="protein1.png" alt="Proteína" class="w-full h-full object-cover object-center">
     </div>
     
-    <div class="relative z-10 bg-white bg-opacity-50 p-6 rounded-xl flex flex-col items-center shadow-lg mt-16">
-        <a href="setup.html" class="bg-white text-black px-10 py-4 rounded-lg text-xl font-bold m-2 hover:bg-gray-200 flex items-center">
-            <img src="icon1.png" alt="Ícone 1" class="w-12 h-12 mr-3"> Iniciar Docking
-        </a>
-        <button class="bg-white text-black px-10 py-4 rounded-lg text-xl font-bold m-2 hover:bg-gray-200 flex items-center">
-            <img src="icon2.png" alt="Ícone 2" class="w-12 h-12 mr-3"> Estimar tempo de Docking
-        </button>
-    </div>
+    <!-- Overlay gradiente -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/60 z-0"></div>
     
-    <div class="absolute bottom-4 right-4 z-10">
-        <img src="protein2.gif" alt="GIF animado" class="w-55 h-55">
+    <!-- Conteúdo principal -->
+    <div class="relative z-10 w-full max-w-4xl mx-auto px-4 py-16 flex flex-col items-center">
+        <!-- Título principal -->
+        <div class="text-center mb-12">
+            <h1 class=" text-6xl font-bold mb-3 tracking-tight">Do Docking</h1>
+            <p class="text-xl text-gray-300">Por Natalie Marques</p>
+        </div>
+        
+        <!-- Cartões de ação -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+            <a href="setup.html" class="card group rounded-xl p-6 flex items-center hover:cursor-pointer">
+                <div class="bg-indigo-600/20 p-3 rounded-lg mr-4 group-hover:bg-indigo-600/30 transition-all">
+                    <img src="icon1.png" alt="Ícone 1" class="w-14 h-14">
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1">Iniciar Docking</h3>
+                    <p class="text-gray-400 text-sm">Configure e execute seu processo de docking</p>
+                </div>
+            </a>
+            
+            <div class="card group rounded-xl p-6 flex items-center hover:cursor-pointer">
+                <div class="bg-emerald-600/20 p-3 rounded-lg mr-4 group-hover:bg-emerald-600/30 transition-all">
+                    <img src="icon2.png" alt="Ícone 2" class="w-14 h-14">
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1">Estimar tempo</h3>
+                    <p class="text-gray-400 text-sm">Calcule o tempo estimado para seu docking</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botão de ação principal -->
+        <div class="mt-10">
+            
+        </div>
     </div>
-    
-    <footer class="absolute bottom-0 w-full flex justify-center py-4 z-10">
-        <img src="logo1.png" alt="Logo" class="h-30">
+    <!-- Footer -->
+    <footer class="absolute bottom-0 left-0 flex items-center justify-between w-full px-8 py-4 z-10 bg-black/30 backdrop-blur-sm">
+        <div class="flex items-center">
+            <img src="logo1.png" alt="Logo" class="h-16 mr-4">
+            <div class="text-xs text-gray-400">
+                <p>© 2025 Natalie Marques Feitosa</p>
+            </div>
+        </div>
+        <div class="text-white text-sm">
+            <a href="#" class="text-indigo-400 hover:text-indigo-300 transition"></a> • 
+            <a href="https://github.com/namqs/Do_Docking" class="text-indigo-400 hover:text-indigo-300 transition"> Código</a>
+        </div>
     </footer>
+    
 </body>
 </html>
