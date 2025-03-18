@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .custom-file-upload:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .radio-container input[type="radio"] {
+            appearance: none;
+            width: 1.2rem;
+            height: 1.2rem;
+            border: 2px solid #4F46E5;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            position: relative;
+        }
+        
+        .radio-container input[type="radio"]:checked::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.6rem;
+            height: 0.6rem;
+            background-color: #4F46E5;
+            border-radius: 50%;
+        }
+        
+        .gradient-border {
+            border: 1px solid transparent;
+            background: linear-gradient(black, black) padding-box,
+                         linear-gradient(90deg, #4F46E5, #10B981) border-box;
+            border-radius: 1rem;
+        }
+        
+        .file-item {
+            transition: all 0.3s ease;
+        }
+        
+        .file-item:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body class="relative bg-black h-screen w-screen flex flex-col items-center justify-center overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 bg-cover bg-center border-8 border-black overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-black/70"></div>
+        <!-- Abstract science patterns -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Title with glow effect -->
+    <div class="relative z-10 text-center text-white mb-12">
+        <h1 class="text-6xl font-bold tracking-tight glow-text bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600">Iniciar Docking</h1>
+        <p class="mt-3 text-lg text-blue-300/80">Configure seu experimento de molecular docking</p>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="relative z-10 flex flex-row items-center justify-center w-full px-6 space-x-12 max-w-6xl mx-auto">
+        
+        <!-- Left Image with enhanced visual effects -->
+        <div class="w-1/3">
+            <div class="relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl blur opacity-75"></div>
+                <div class="relative">
+                    <img src="protein3.png" alt="Docking Image" class="rounded-xl shadow-2xl w-full h-auto object-cover transform transition-transform duration-500 hover:scale-105">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Content -->
+        <div class="w-2/3 flex flex-col items-center">
+            
+            <!-- File Upload Section -->
+            <div class="gradient-border bg-black bg-opacity-75 p-6 rounded-xl shadow-xl w-4/5 text-white mb-8 backdrop-blur-sm">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    Upload de Arquivos
+                </h2>
+                <input type="file" id="fileInput" multiple class="hidden" accept=".pdbqt">
+                <label for="fileInput" class="custom-file-upload block w-full text-center bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-3 px-4 rounded-lg font-medium cursor-pointer hover:from-indigo-500 hover:to-blue-400 transition-all duration-300 shadow-lg">
+                    <span class="flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Selecionar Arquivos PDBQT
+                    </span>
+                </label>
+                <div class="mt-4 text-sm">
+                    <div class="flex items-center mb-2 text-indigo-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Arquivos selecionados:</span>
+                    </div>
+                    <ul id="fileList" class="space-y-1 max-h-32 overflow-y-auto pl-2 pr-4 py-2 bg-indigo-900/20 rounded-lg"></ul>
+                </div>
+            </div>
+            
+            <!-- Program Selection Section -->
+            <div class="gradient-border bg-black bg-opacity-75 p-6 rounded-xl shadow-xl w-4/5 text-white backdrop-blur-sm">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                    Escolha o Programa
+                </h2>
+                <div class="flex flex-col space-y-3 radio-container">
+                    <label class="flex items-center p-3 bg-indigo-900/20 rounded-lg hover:bg-indigo-800/30 transition cursor-pointer">
+                        <input type="radio" name="program" value="vina" class="form-radio">
+                        <div class="ml-2">
+                            <span class="text-base font-medium">Autodock Vina</span>
+                            <p class="text-xs text-gray-300 mt-1">Algoritmo tradicional para simulações de docking molecular</p>
+                        </div>
+                    </label>
+                    <label class="flex items-center p-3 bg-indigo-900/20 rounded-lg hover:bg-indigo-800/30 transition cursor-pointer">
+                        <input type="radio" name="program" value="gnina" class="form-radio">
+                        <div class="ml-2">
+                            <span class="text-base font-medium">Gnina</span>
+                            <p class="text-xs text-gray-300 mt-1">Ferramenta de docking molecular com Machine Learning</p>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Iniciar Simulação
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="absolute bottom-0 left-0 flex items-center justify-between w-full px-8 py-4 z-10 bg-black/30 backdrop-blur-sm">
+        <div class="flex items-center">
+            <img src="logo1.png" alt="Logo" class="h-16 mr-4">
+            <div class="text-xs text-gray-400">
+                <p>© 2025 Molecular Docking Toolbox</p>
+                <p>Versão 2.3.1</p>
+            </div>
+        </div>
+        <div class="text-white text-sm">
+            <a href="#" class="text-indigo-400 hover:text-indigo-300 transition">Ajuda</a> • 
+            <a href="#" class="text-indigo-400 hover:text-indigo-300 transition">Documentação</a>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            if (event.target.files.length === 0) {
+                const emptyMessage = document.createElement('li');
+                emptyMessage.textContent = 'Nenhum arquivo selecionado';
+                emptyMessage.className = 'text-gray-400 italic';
+                fileList.appendChild(emptyMessage);
+            } else {
+                Array.from(event.target.files).forEach((file, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'file-item flex items-center text-sm py-1';
+                    
+                    const icon = document.createElement('span');
+                    icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>`;
+                    
+                    const fileName = document.createElement('span');
+                    fileName.textContent = file.name;
+                    
+                    listItem.appendChild(icon);
+                    listItem.appendChild(fileName);
+                    fileList.appendChild(listItem);
+                    
+                    // Animation delay for a staggered effect
+                    setTimeout(() => {
+                        listItem.style.opacity = '1';
+                    }, index * 100);
+                });
+            }
+        });
+        
+        // Initialize with empty message
+        window.addEventListener('DOMContentLoaded', () => {
+            const fileList = document.getElementById('fileList');
+            const emptyMessage = document.createElement('li');
+            emptyMessage.textContent = 'Nenhum arquivo selecionado';
+            emptyMessage.className = 'text-gray-400 italic';
+            fileList.appendChild(emptyMessage);
+        });
+    </script>
+</body>
+</html>
